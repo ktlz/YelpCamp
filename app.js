@@ -34,6 +34,8 @@ app.use(methodOverride("_method"));
 app.set('view engine', 'ejs');
 app.use(flash());
 
+app.locals.moment = require("moment");
+
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Meow meow",
