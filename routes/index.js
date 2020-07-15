@@ -3,6 +3,7 @@ let router = express.Router();
 let passport = require("passport");
 let User = require("../models/user");
 let Campground = require("../models/campground");
+const { checkProfileOwnership } = require("../middleware");
 
 
 //root route
@@ -76,6 +77,36 @@ router.get("/users/:id", function(req, res){
         });
     });
 });
+
+//EDIT user profile route
+router.get("/users/:id/edit", checkProfileOwnership, function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        res.render("users/edit", {user: foundUser});
+    });
+});
+
+//UPDATE user profile route
+router.put("/users/:id", checkProfileOwnership, function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, foundUser){
+        if(err) {
+            res.redirect("back");
+        } else {
+            res.redirect("/users/" + req.params.id);
+        }
+    })
+})
+
+// //DELETE user's profile
+// router.delete("/users/:id", middleware.checkProfileOwnership, function(req, res){
+//     User.findByIdAndRemove(req.params.user_id, function(err){
+//         if(err){
+//             res.redirect("back");
+//         } else {
+//             req.flash("success", "User deleted");
+//             res.redirect("/campgrounds");
+//         }
+//     });
+// });
 
 
 module.exports = router;
