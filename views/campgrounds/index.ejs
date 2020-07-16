@@ -1,16 +1,36 @@
 <%- include("../partials/header") %>
 
+<link rel="stylesheet" href="/stylesheets/main.css">
+
     <header class="jumbotron">
         <div class="container">
-            <h1>Welcome To YelpCamp!</h1>
+            <div class="header">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="member-icon bi bi-triangle-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8.065 2.016a.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.162.162 0 0 1-.054.06.115.115 0 0 1-.066.017l-6.856-.017V2a.13.13 0 0 1 .063.016zm-1.043-.45a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>
+                </svg>
+                <h1 class="member-header">Welcome To YelpCamp!</h1>
+            </div>
             <p>View our hand-picked campgrounds from all over the world!</p>
             <p>
                 <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground!</a>
+            </p>
+            <p>
+                <form action="/campgrounds" method="GET" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="search" placeholder="Campground search..." class="form-control">
+                        <input type="submit" value="Search" class="btn btn-default">
+                    </div>
+                </form>
             </p>
         </div>
     </header>
 
     <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <div class="col-md-12">
+            <% if(noMatch && noMatch !== undefined) { %>
+                <h3><%= noMatch %></h3>
+            <% } %>
+        </div>
         <% campgrounds.forEach(function(campground){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">

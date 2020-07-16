@@ -22,3 +22,18 @@ body {
     height: 400px;
     width: 100%;
 }
+
+.member-header {
+    display: inline-block;
+    margin: 0;
+    margin-left: 12px;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.member-icon {
+    vertical-align: bottom;
+}
+
