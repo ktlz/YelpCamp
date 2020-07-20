@@ -18,16 +18,7 @@ let commentRoutes    = require("./routes/comments"),
 
 //seedDB(); //seeding db
 mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true}); 
-// mongoose.connect("mongodb+srv://ktlz:<hahudid83>@cluster0.80b3a.mongodb.net/<yelp_camp>?retryWrites=true&w=majority", {
-//     useNewUrlParser: true, 
-//     useCreateIndex: true
-// }).then(() => {
-//     console.log("Connected to DB");
-// }). catch(err => {
-//     console.log("ERROR: ", err.message);
-// });
 
-//mongodb+srv://ktlz:<hahudid83>@cluster0.80b3a.mongodb.net/<yelp_camp>?retryWrites=true&w=majority
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
